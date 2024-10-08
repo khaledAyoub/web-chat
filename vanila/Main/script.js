@@ -27,3 +27,12 @@ imageAndUserName.addEventListener("click", () => {
   contactInfo.classList.add("show");
   contactInfo.classList.remove("hide");
 });
+
+//settings
+
+const settings = document.querySelector("#gearicon");
+console.log(settings);
+
+settings.addEventListener("click", () => {
+  window.location.href = "../Profile/index.html";
+});
