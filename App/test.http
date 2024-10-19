@@ -1,0 +1,58 @@
+### Adding user 1 
+//id = 670bca4993f5b3f14bf77f39
+POST http://localhost:8747/api/auth/signup
+content-type: application/json
+
+{
+  "email": "exmple@gmail.com",
+  "password": "a really strong password",
+  "fullName": "khaled",
+  "userName": "ayoub"
+}
+
+
+### Adding user 2
+//id = 670bca5a93f5b3f14bf77f3c
+POST http://localhost:8747/api/auth/signup
+content-type: application/json
+
+{
+  "email": "exmple2@gmail.com",
+  "password": "more strong password",
+  "fullName": "Mohamed",
+  "userName": "abo hmid"
+}
+
+### testing  login as user 1 
+POST http://localhost:8747/api/auth/login
+content-type: application/json
+
+{
+    "email": "exmple@gmail.com",
+    "password": "a really strong password"
+}
+
+### testing  login as user 2
+POST http://localhost:8747/api/auth/login
+content-type: application/json
+
+{
+    "email": "exmple2@gmail.com",
+    "password": "more strong password"
+}
+
+
+### testing  logout
+GET http://localhost:8747/api/auth/logout
+content-type: application/json
+
+
+### get Friends and Blocked Lists
+GET  http://localhost:8747/api/main/getPeople
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6IjY3MGJjYTQ5OTNmNWIzZjE0YmY3N2YzOSIsInVzZXJOYW1lIjoiYXlvdWIiLCJpYXQiOjE3Mjg4MjU5NjksImV4cCI6MTk4ODAyNTk2OX0.sKiyuNi2D2Ar8FtgaEFTrdbjf7t5Ne-xryj6L8OanJQ; Max-Age=259200; Path=/; Expires=Wed, 16 Oct 2024 13:26:09 GMT; Secure; SameSite=None
+
+
+
+### get chat between a signedin user and other user
+POST http://localhost:8747/api/main/getChat/abo hmid
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6IjY3MGJjYTQ5OTNmNWIzZjE0YmY3N2YzOSIsInVzZXJOYW1lIjoiYXlvdWIiLCJpYXQiOjE3Mjg4MjYzNjcsImV4cCI6MTk4ODAyNjM2N30.8IDFZ8IL7G1G9S5qsftW-eJPoKeA41grYRIkv1Qt74o; Max-Age=259200; Path=/; Expires=Wed, 16 Oct 2024 13:32:47 GMT; Secure; SameSite=None

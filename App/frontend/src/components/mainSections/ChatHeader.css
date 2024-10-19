@@ -1,0 +1,29 @@
+.currentuserheader {
+  z-index: 2;
+  grid-area: 1 / 3 / 2 / 5;
+  background: #6e54b5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 100%;
+  color: white;
+}
+.currentuserimage {
+  width: 40px;
+  border-radius: 50%;
+  aspect-ratio: 1;
+}
+.headerleft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  & > h2 {
+    color: white;
+    font-size: 1.2rem;
+  }
+}
+.headerright {
+  height: 55%;
+}

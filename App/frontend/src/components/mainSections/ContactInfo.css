@@ -1,0 +1,116 @@
+.contactinfo {
+  position: relative;
+  grid-area: 1 / 5 / 6 / 6;
+  background: #3b364c;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  overflow-y: scroll;
+  z-index: 1;
+}
+.close {
+  width: 30px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: none;
+}
+.contactinfo::-webkit-scrollbar {
+  width: 5px;
+  background-color: var(--darkInputDisabled);
+  border-radius: 10px;
+}
+.contactinfo::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8f8f8f, #7c7c7c);
+  border-radius: 10px;
+  border: 2px solid var(--dark);
+}
+
+.banner {
+  width: 98%;
+  margin-top: 4px;
+  height: 130px;
+  flex-shrink: 0;
+  object-fit: cover;
+  overflow: hidden;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.contactinfoimage {
+  border-radius: 50%;
+  width: 130px;
+  aspect-ratio: 1;
+  border: 7px solid #969696;
+}
+.pfpnameabout {
+  transform: translateY(-70px);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  & > h2 {
+    color: white;
+    font-size: 1.8rem;
+  }
+  & > h4 {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 100;
+  }
+}
+
+.contactpersonalinfo {
+  width: 65%;
+  color: white;
+  transform: translateY(-40px);
+
+  & > h4 {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  & > p {
+    font-size: 0.75rem;
+    font-weight: 100;
+    margin-bottom: 15px;
+  }
+}
+
+.media {
+  width: 65%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  & > h2 {
+    font-size: 1.2rem;
+  }
+}
+.mediacard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  & > h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  & > p {
+    font-size: 0.75rem;
+    font-weight: 100;
+  }
+}
+
+.blockbtn {
+  font-size: 1.2rem;
+  color: white;
+  border: none;
+  width: 65%;
+  margin: 20px 0;
+  padding: 10px;
+  background: #49435d;
+  border-radius: 5px;
+}

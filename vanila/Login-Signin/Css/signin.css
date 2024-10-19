@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "open Sans";
+  padding: 10px;
+}
+
+.box {
+  background-color: #2b2738;
+  color: white;
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px;
+  border-radius: 10px;
+  .image {
+    width: 400px;
+    img {
+      max-width: 100%;
+    }
+  }
+  .sigin {
+    padding: 20px;
+    flex: 1;
+    h2 {
+      font-size: 30px;
+    }
+    p {
+      margin-top: 15px;
+      font-size: 15px;
+      color: gray;
+      margin-bottom: 10px;
+      span {
+        margin-left: 2px;
+        color: #8478aa;
+        font-weight: bold;
+        font-size: 17px;
+      }
+    }
+    .input {
+      input {
+        all: unset;
+        background-color: #3b364c;
+        width: calc(100% - 30px);
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 15px;
+        color: white;
+        &::placeholder {
+          color: white;
+          font-size: 15px;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+      .name {
+        display: flex;
+        gap: 20px;
+        input {
+          text-align: center;
+          &::placeholder {
+            text-align: center;
+          }
+        }
+      }
+    }
+    .agree {
+      span {
+        font-size: 15px;
+      }
+    }
+    .create-account {
+      width: 100%;
+      background-color: #6e54b5;
+      color: white;
+      padding: 10px;
+      font-size: 20px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    .or {
+      text-align: center;
+      color: white;
+      font-size: 15px;
+    }
+    .icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      align-items: center;
+      button {
+        padding: 15px 20px;
+        background-color: transparent;
+        border: black;
+        border: 1px solid black;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
+}
+@media (max-width: 720px) {
+  .box {
+    .image {
+      display: none;
+    }
+  }
+}

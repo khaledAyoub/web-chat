@@ -1,0 +1,407 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #615c75;
+  width: 100%;
+  height: 100dvh; /* Consider using min-height to ensure full view height */
+}
+
+main {
+  background: #2b2738;
+  width: 98%;
+  height: 97%;
+  padding: 7px;
+  border-radius: 15px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 50px 1fr 1fr 1fr 1fr;
+  grid-template-rows: 50px 1fr 1fr 1fr 1fr;
+  gap: 5px; /* Simplified gap definition */
+}
+
+main > div {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* 11111 side bar */
+.sidebar {
+  grid-area: 1 / 1 / 6 / 2;
+  background: #6e54b5;
+}
+
+.logo {
+  width: 90%;
+  margin: 5px 5% 20px 5%;
+  border-radius: 50%;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 0;
+  align-items: center;
+  height: calc(100% - 75px); /* 50px + 25px */
+}
+
+.groupone,
+.grouptwo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 75%;
+  gap: 20px;
+}
+
+.icon {
+  width: 100%;
+}
+
+/* 22222 profile */
+.profile {
+  grid-area: 1 / 2 / 6 / 6;
+  background: #3b364c;
+  padding: 10px;
+  overflow-y: scroll;
+}
+.profile::-webkit-scrollbar {
+  width: 5px;
+  background-color: var(--darkInputDisabled);
+  border-radius: 10px;
+}
+.profile::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8f8f8f, #7c7c7c);
+  border-radius: 10px;
+  border: 2px solid var(--dark);
+}
+
+/* banner */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.bannerimage {
+  position: absolute;
+  border-radius: 10px;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  top: 0;
+}
+
+.triangle {
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-left: clamp(70px, 10vw, 100px) solid transparent;
+  border-bottom: clamp(70px, 10vw, 70px) solid #555555d0;
+}
+
+.editbannericon {
+  width: clamp(30px, 5vw, 35px);
+  bottom: 0;
+  right: clamp(0px, 2vw, 7px);
+  position: absolute;
+}
+
+/* profile info */
+.profileinfo {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.imagediv {
+  width: 150px;
+  position: relative;
+  transform: translateY(-65px);
+}
+
+.pfpimage {
+  width: 150px;
+  border-radius: 50%;
+  border: 7px solid #969696;
+  aspect-ratio: 1;
+}
+
+.halfcircle {
+  width: 150px;
+  height: 150px;
+  background: #606060d0;
+  position: absolute;
+  top: 0;
+  border-radius: 0 0 50% 50%;
+  overflow: hidden;
+  clip-path: inset(70% 0 0 0);
+}
+
+.editpfpicon {
+  position: absolute;
+  width: 25px;
+  bottom: 15px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+header {
+  display: flex;
+  color: white;
+  margin-left: 200px;
+}
+
+.nameabout {
+  margin: 0 50px;
+}
+
+.aboutlable {
+  font-size: 0.9rem;
+  margin-right: 20px;
+  font-weight: 600;
+}
+
+.aboutinput {
+  width: 170px;
+  height: 32px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 3px solid #969696;
+  background-color: transparent;
+  color: white;
+}
+.disabled {
+  pointer-events: none;
+}
+header input:not(.disabled) {
+  background: #302d38;
+}
+
+.aboutinput::placeholder {
+  color: #aaaaaa;
+}
+
+.aboutinput:focus {
+  outline: none;
+  border: 2px solid #c6c5c5;
+}
+
+.id {
+  display: flex;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.id > label,
+.id > h3 {
+  font-size: 0.9rem;
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.data {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  margin-top: 10px;
+  width: 50%;
+  border-right: 7px solid #c2c2c2;
+  padding-right: 10%;
+  transform: translateY(-20px);
+}
+
+.accountdetails,
+.changepass {
+  width: 100%;
+  color: white;
+  font-size: 24px;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.accountdetails {
+  border-bottom: 2px solid #c2c2c2;
+}
+
+.changepass {
+  border-top: 2px solid #c2c2c2;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 3px;
+  color: white;
+}
+
+.option label {
+  font-size: clamp(15px, 1.2vw, 20px);
+}
+
+.option input {
+  width: 220px;
+  height: 40px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 3px solid #969696;
+  background-color: transparent;
+  color: white;
+}
+
+.option input::placeholder {
+  color: #aaaaaa;
+}
+
+.option input:focus {
+  outline: none;
+  border: 2px solid #c6c5c5;
+}
+
+.btn {
+  font-size: 1.2rem;
+  background-color: #49435d;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  width: 220px;
+  padding: 10px 5px;
+  margin: 10px 2px;
+}
+
+.settings {
+  background-color: #6e54b5;
+  border-radius: 10px;
+  width: 25%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  margin-top: 30px;
+}
+.groups {
+  margin: 20px 0;
+  & h3 {
+    font-size: 24px;
+    color: white;
+    border-bottom: 2px solid white;
+    margin-bottom: 10px;
+  }
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+
+  & h4 {
+    color: white;
+    font-size: 14px;
+    margin: 2.5px 0;
+  }
+
+  & p {
+    color: white;
+  }
+}
+.deletebtn {
+  font-size: 1.2rem;
+  background-color: rgb(121, 13, 13);
+  color: white;
+  border-radius: 8px;
+  border: none;
+  max-width: 220px;
+  padding: 10px 20px;
+  margin: 10px auto;
+}
+
+.option .disabled {
+  pointer-events: none;
+}
+.option input:not(.disabled) {
+  background: #302d38;
+}
+
+/* ------------------------------------------------------- */
+
+@media screen and (max-width: 1120px) {
+  .stats {
+    flex-direction: column;
+    align-items: center;
+  }
+  .data {
+    width: 80%;
+    border-right: none;
+    border-bottom: 2px solid #c6c5c5;
+    padding: 0;
+    padding-bottom: 30px;
+  }
+  .settings {
+    width: 80%;
+  }
+  .deletebtn {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .profileinfo {
+    padding-left: 0;
+    transform: translateY(-65px);
+  }
+  .imagediv {
+    transform: none;
+  }
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nameabout {
+    margin: 0;
+    text-align: center;
+  }
+  .id {
+    display: flex;
+    margin-top: 10px;
+  }
+  .accountdetails {
+    margin-top: 0;
+  }
+  header {
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .option {
+    flex-direction: column;
+    align-items: center;
+    & > label {
+      width: 220px;
+    }
+  }
+  .btn {
+    width: 220px;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

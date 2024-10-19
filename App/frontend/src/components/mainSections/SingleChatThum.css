@@ -1,0 +1,62 @@
+.singlechat {
+  border-left: 8px solid transparent;
+  background: #332f41;
+  display: flex;
+  width: 100%;
+  height: 120px;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
+}
+.singlechat:hover {
+  background: #4f4a65;
+}
+
+.selectedchat {
+  border-left: 8px solid #9872ff;
+  background: rgb(66, 62, 84);
+}
+
+.chatimage {
+  width: 8 0px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.chatinfo {
+  width: 60%;
+}
+
+.chatinfo h2 {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.chatinfo p {
+  color: white;
+  width: 95%;
+  font-weight: 200;
+  font-size: 0.7rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  max-height: 3em;
+}
+
+.missedmessages {
+  color: white;
+  font-size: 0.8rem;
+  display: flex; /* Change to flex */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  border-radius: 50%;
+  min-width: 30px;
+  min-height: 30px; /* Added height for circular shape */
+  padding: 5px;
+  background: #5f489f;
+}

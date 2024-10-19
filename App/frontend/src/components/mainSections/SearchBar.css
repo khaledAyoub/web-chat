@@ -1,0 +1,31 @@
+.searchbar {
+  z-index: 3;
+  grid-area: 1 / 2 / 2 / 3;
+  background: #6e54b5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.searchbar input {
+  font-size: 1rem;
+  color: aliceblue;
+  width: 85%;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background-color: transparent;
+  padding: 8px 10px;
+
+  &::placeholder {
+    color: #aaaaaa;
+  }
+
+  &:focus {
+    outline: none;
+    border: 2px solid #c6c5c5;
+  }
+}
+.searchicon {
+  width: 25px;
+}

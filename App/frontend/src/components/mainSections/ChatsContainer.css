@@ -1,0 +1,75 @@
+.chatcontainer {
+  z-index: 3;
+  grid-area: 2 / 2 / 6 / 3;
+  background: #3b364c;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: scroll;
+}
+/* edit the schroll bar */
+.chatcontainer::-webkit-scrollbar {
+  width: 5px;
+  background-color: var(--darkInputDisabled);
+  border-radius: 10px;
+}
+.chatcontainer::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8f8f8f, #7c7c7c);
+  border-radius: 10px;
+  border: 2px solid var(--dark);
+}
+
+.singlechat {
+  border-left: 8px solid transparent;
+
+  background: #332f41;
+  display: flex;
+  width: 100%;
+  height: 140px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.selectedchat {
+  border-left: 8px solid #9872ff;
+}
+.chatimage {
+  width: 80px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.chatinfo {
+  & > h2 {
+    color: white;
+    font-size: 1.2rem;
+  }
+
+  & > p {
+    color: white;
+    width: 95%;
+    font-weight: 200;
+    font-size: 0.7rem;
+    display: -webkit-box; /* Needed for line clamping */
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical; /* Specifies the box is vertical */
+    overflow: hidden; /* Hide the overflowed text */
+    text-overflow: ellipsis; /* Show the ellipsis (...) */
+    line-height: 1.5; /* Adjust line height for better readability */
+    max-height: 3em;
+  }
+}
+.missedmessages {
+  color: white;
+
+  font-size: 0.8rem;
+  text-align: center;
+  align-content: center;
+  display: inline-block;
+  border-radius: 50%;
+  min-width: 30px;
+  padding: 5px;
+  aspect-ratio: 1;
+  background: #5f489f;
+}

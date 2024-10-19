@@ -1,0 +1,157 @@
+body {
+  background-color: #615c75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Open Sans", sans-serif;
+  padding: 10px;
+  margin: 0;
+}
+
+.signin-container {
+  background-color: #2b2738;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.signin-image {
+  width: 500px;
+}
+
+.signin-image img {
+  max-width: 90%;
+  margin: 5%;
+}
+
+.signin-form {
+  padding: 20px;
+  flex: 1;
+  max-width: 500px;
+}
+
+.signin-form h2 {
+  font-size: 30px;
+}
+
+.signin-form p {
+  margin-top: 15px;
+  font-size: 15px;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+.signin-form p span {
+  margin-left: 2px;
+  color: #8478aa;
+  font-weight: bold;
+  font-size: 17px;
+}
+input {
+  margin: 10px 0 !important;
+}
+
+.input-fields {
+  margin-bottom: 15px;
+}
+
+.name-fields {
+  display: flex;
+  gap: 10px;
+}
+
+.name-fields input,
+.input-fields input {
+  all: unset;
+  background-color: #3b364c;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 15px;
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-fields input::placeholder,
+.name-fields input::placeholder {
+  color: white;
+  font-size: 15px;
+}
+
+.input-fields input:focus,
+.name-fields input:focus {
+  outline: none;
+}
+
+.terms-agreement {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.terms-agreement input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
+.terms-agreement label {
+  font-size: 15px;
+  color: gray;
+}
+
+.btn-create-account {
+  width: 100%;
+  background-color: #6e54b5;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.or {
+  text-align: center;
+  color: white;
+  font-size: 15px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.social-icons button {
+  padding: 13px 10px;
+  width: 100%;
+  min-width: 110px;
+  background-color: transparent;
+  border: 2px solid #494554;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.social-icons button:hover {
+  background-color: #6e54b5;
+}
+
+@media (max-width: 940px) {
+  .signin-container {
+    flex-direction: column;
+  }
+  .signin-image {
+    display: none;
+  }
+}
