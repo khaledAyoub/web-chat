@@ -8,6 +8,8 @@ import {
   HOST,
   UPDATE_PROFILE_ROUTE,
   ADD_PROFILE_BANNER_ROUTE,
+  GET_USER_INFO,
+  CHANGE_PASSWORD,
 } from "@/utils/constants";
 import axios from "axios";
 const phoneRegex = /^\+?\d{4,16}$/;
@@ -29,12 +31,9 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8747/api/auth/user-info",
-          {
-            withCredentials: true,
-          }
-        );
+        const response = await apiClient.get(GET_USER_INFO, {
+          withCredentials: true,
+        });
 
         setFullName(response.data.fullName);
         setUserName(response.data.userName);
@@ -100,8 +99,8 @@ const Profile = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:8747/api/auth/change-password",
+      const response = await apiClient.post(
+        CHANGE_PASSWORD,
         { oldPass, newPass },
         { withCredentials: true }
       );

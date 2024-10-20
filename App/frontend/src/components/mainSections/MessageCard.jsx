@@ -4,6 +4,8 @@ import RightIcon from "../icons/RightIcon.jsx";
 import "./typing.css";
 import image from "../../assets/log.png";
 import ReactPlayer from "react-player/youtube";
+import { apiClient } from "@/lib/api-client.js";
+import { FILE_DOWNLOAD } from "@/utils/constants.js";
 
 export default function MessageCard({
   content,
@@ -22,8 +24,8 @@ export default function MessageCard({
     if (content && !text) {
       const fetchFile = async () => {
         try {
-          const response = await axios.post(
-            "http://localhost:8747/api/main/fileDownload",
+          const response = await apiClient.post(
+            FILE_DOWNLOAD,
             { filepath: content }, // Dynamic content as filepath
             {
               responseType: "blob", // Expect file as blob

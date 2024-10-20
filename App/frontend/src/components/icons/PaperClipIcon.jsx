@@ -1,6 +1,8 @@
 import React from "react";
 import { toast } from "sonner";
 import axios from "axios"; // Import axios
+import { FILE_UPLOAD_ROUTE } from "@/utils/constants";
+import { apiClient } from "@/lib/api-client";
 
 export default function PaperClipIcon({ user, setMessages, rerender }) {
   // Function to handle file upload
@@ -18,13 +20,11 @@ export default function PaperClipIcon({ user, setMessages, rerender }) {
         formData.append("chatID", user.data.chatID);
 
         try {
-          const response = await axios.post(
-            "http://localhost:8747/api/auth/fileUpload",
-            formData,
-            {
-              withCredentials: true,
-            }
-          );
+          console.log(FILE_UPLOAD_ROUTE);
+
+          const response = await apiClient.post(FILE_UPLOAD_ROUTE, formData, {
+            withCredentials: true,
+          });
 
           if (response.status === 200) {
             // Handle successful upload response

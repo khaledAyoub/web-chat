@@ -2,9 +2,11 @@ import "./ChatsContainer.css";
 import React, { useEffect, useState } from "react";
 import SingleChatThum from "./SingleChatThum.jsx";
 import axios from "axios";
+import { apiClient } from "@/lib/api-client";
+import { GET_PEOPLE, GET_USER_IMAGE } from "@/utils/constants";
 
 const req = async () => {
-  const response = await axios.get("http://localhost:8747/api/main/getPeople", {
+  const response = await apiClient.get(GET_PEOPLE, {
     withCredentials: true, // Include cookies in the request
   });
   return response.data.friends; // Return friends data
@@ -12,8 +14,8 @@ const req = async () => {
 
 // Function to fetch user image
 const fetchUserImage = async (userName) => {
-  const imageResponse = await axios.post(
-    `http://localhost:8747/api/main/getUserImage`,
+  const imageResponse = await apiClient.post(
+    GET_USER_IMAGE,
     { userName },
     {
       withCredentials: true,

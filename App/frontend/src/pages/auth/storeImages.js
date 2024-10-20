@@ -1,7 +1,9 @@
+import { apiClient } from "@/lib/api-client";
+import { GET_USER_BANNER, GET_USER_IMAGE } from "@/utils/constants";
 import axios from "axios";
 const storeImages = async (userName) => {
-  const imageResponse = await axios.post(
-    `http://localhost:8747/api/main/getUserImage`,
+  const imageResponse = await apiClient.post(
+    GET_USER_IMAGE,
     { userName: userName },
     {
       withCredentials: true,
@@ -17,8 +19,8 @@ const storeImages = async (userName) => {
   });
   localStorage.setItem("image", imageBase64);
 
-  const bannerResponse = await axios.post(
-    `http://localhost:8747/api/main/getUserBanner`,
+  const bannerResponse = await apiClient.post(
+    GET_USER_BANNER,
     { userName: userName },
     {
       withCredentials: true,

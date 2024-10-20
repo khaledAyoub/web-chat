@@ -6,6 +6,12 @@ import ChatsContainer from "./ChatsContainer.jsx";
 import ChatHeader from "./ChatHeader.jsx";
 import ChatMessages from "./ChatMessages.jsx";
 import ContactInfo from "./ContactInfo.jsx";
+import { apiClient } from "@/lib/api-client";
+import {
+  GET_SINGLE_CHAT,
+  GET_USER_BANNER,
+  GET_USER_IMAGE,
+} from "@/utils/constants";
 
 export default function Main() {
   const [currentUser, setCurrentUser] = useState({});
@@ -16,15 +22,17 @@ export default function Main() {
     if (currentUser !== userName) {
       try {
         // Fetch chat data
-        const response = await axios.post(
-          `http://localhost:8747/api/main/getSingleChat/${userName}`,
+        console.log(`${GET_SINGLE_CHAT}/${userName}`);
+
+        const response = await apiClient.post(
+          `${GET_SINGLE_CHAT}/${userName}`,
           {},
           { withCredentials: true }
         );
 
         // Fetch user image as a Blob
-        const imageResponse = await axios.post(
-          `http://localhost:8747/api/main/getUserImage`,
+        const imageResponse = await apiClient.post(
+          GET_USER_IMAGE,
           { userName },
           {
             withCredentials: true,
@@ -34,8 +42,8 @@ export default function Main() {
         const image = URL.createObjectURL(imageResponse.data);
 
         // Fetch user banner as a Blob
-        const bannerResponse = await axios.post(
-          `http://localhost:8747/api/main/getUserBanner`,
+        const bannerResponse = await apiClient.post(
+          GET_USER_BANNER,
           { userName },
           {
             withCredentials: true,

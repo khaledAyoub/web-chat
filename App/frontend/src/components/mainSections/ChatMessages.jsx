@@ -6,10 +6,12 @@ import SendIcon from "../icons/SendIcon.jsx";
 import AttatchIcon from "../icons/AttatchIcon.jsx";
 import axios from "axios";
 import io from "socket.io-client";
+import { apiClient } from "@/lib/api-client";
+import { SEND_MESSAGE } from "@/utils/constants";
 
 var time;
 
-const socket = io.connect("http://localhost:8747", {
+const socket = io.connect(import.meta.env.VITE_SERVER_URL, {
   query: {
     myID: localStorage.getItem("myID"),
   },
@@ -100,8 +102,8 @@ export default function ChatMessages({ user, setcontactCross, mainCross }) {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:8747/api/main/sendMessage",
+      const response = await apiClient.post(
+        SEND_MESSAGE,
         { content: inputValue, chatID },
         { withCredentials: true }
       );
