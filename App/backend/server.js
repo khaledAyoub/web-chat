@@ -8,6 +8,7 @@ import cors from "cors";
 import { app, server } from "./socketIO/socket.io.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import path from "path";
 
 dotenv.config();
 
@@ -50,6 +51,12 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/main", mainRoutes);
+
+const __dir = path.resolve();
+app.use(express.static(path.join(__dir, "/frontend/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dir, "frontend", "dist", "index.html"));
+});
 
 // Port assigning
 server.listen(port, () => {
