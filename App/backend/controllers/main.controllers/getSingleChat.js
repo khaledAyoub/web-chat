@@ -34,7 +34,7 @@ export default async (req, res) => {
       },
     }).populate({
       path: "messages",
-      select: "senderId content sent seen createdAt",
+      select: "senderId content text createdAt",
       options: { sort: { createdAt: 1 } },
     });
 

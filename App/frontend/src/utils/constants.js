@@ -15,3 +15,4 @@ export const CHANGE_PASSWORD_ROUTE = `${AUTH_ROUTES}/change-password`;
 export const MAIN_ROUTES = "api/main";
 export const GET_PEOPLE = `${MAIN_ROUTES}/getPeople`;
 export const SEND_MESSAGE = `${MAIN_ROUTES}/sendMessage`;
+export const FILE_UPLOAD = `${MAIN_ROUTES}/fileUpload`;

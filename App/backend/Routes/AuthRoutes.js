@@ -11,10 +11,12 @@ import removeProfileImage from "../controllers/auth.controllers/removeProfileIma
 import updateProfie from "../controllers/auth.controllers/updateProfie.js";
 import changePassword from "../controllers/auth.controllers/changePassword.js";
 import removeBannerImage from "../controllers/auth.controllers/removeBannerImage.js";
+import fileUpload from "../controllers/main.controllers/fileUpload.js";
 
 const authRoutes = Router();
 const uploadpfp = multer({ dest: "uploads/profiles/" });
 const uploadbanner = multer({ dest: "uploads/banners/" });
+const uploadfile = multer({ dest: "uploads/files/" });
 authRoutes.post("/signup", signup);
 authRoutes.post("/login", login);
 authRoutes.post("/setup-profile", verifyToken, setUpProfile);
@@ -35,6 +37,12 @@ authRoutes.post(
   verifyToken,
   uploadbanner.single("banner-image"),
   addBannerImage
+);
+authRoutes.post(
+  "/fileUpload",
+  verifyToken,
+  uploadfile.single("file-uploads"),
+  fileUpload
 );
 authRoutes.delete("/remove-profile-image", verifyToken, removeProfileImage);
 authRoutes.delete("/remove-banner-image", verifyToken, removeBannerImage);

@@ -1,8 +1,52 @@
 import React from "react";
+import { toast } from "sonner";
+import axios from "axios"; // Import axios
 
-export default function PaperClipIcon() {
+export default function PaperClipIcon({ user, setMessages, rerender }) {
+  // Function to handle file upload
+  const handelFileUpload = () => {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file"; // Allows any file type
+    fileInput.accept = "image/*"; // Optional: Restrict to images
+
+    fileInput.onchange = async (event) => {
+      const file = event.target.files[0];
+
+      if (file) {
+        const formData = new FormData();
+        formData.append("file-uploads", file);
+        formData.append("chatID", user.data.chatID);
+
+        try {
+          const response = await axios.post(
+            "http://localhost:8747/api/auth/fileUpload",
+            formData,
+            {
+              withCredentials: true,
+            }
+          );
+
+          if (response.status === 200) {
+            // Handle successful upload response
+            toast.success("File Sent Successfully");
+
+            rerender(response.data);
+
+            setMessages((prevMessages) => [...prevMessages, response.data]);
+          }
+        } catch (error) {
+          console.log(error);
+          toast.error("Failed to upload file");
+        }
+      }
+    };
+
+    fileInput.click(); // Trigger file input click
+  };
+
   return (
     <svg
+      onClick={handelFileUpload}
       className="messageicon"
       viewBox="0 0 38 38"
       fill="none"

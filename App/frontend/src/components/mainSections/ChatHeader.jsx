@@ -3,8 +3,6 @@ import "./ChatHeader.css";
 import CrossIconDup from "../icons/CrossIconDup.jsx";
 
 export default function ChatHeader(currentUser) {
-  console.log(currentUser.mainCross);
-
   if (currentUser.user.image) {
     return (
       <div

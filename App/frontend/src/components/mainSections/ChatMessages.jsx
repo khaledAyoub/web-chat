@@ -23,14 +23,26 @@ export default function ChatMessages({ user, setcontactCross, mainCross }) {
       },
     });
   }, [localStorage.getItem("myID")]);
+
+  const rerender = (message) => {
+    console.log(message);
+    socket.emit("sendMessage", {
+      query: {
+        userID: user.data.userID,
+        chatID,
+        message: message,
+      },
+    });
+  };
+
   // for getting chat text input
   const [inputValue, setInputValue] = useState("");
   // for storing the messages and update them and initial them from user
   const [messages, setMessages] = useState(user?.data?.messages || []);
 
   const [typing, setTyping] = useState(false);
+  const [render, setrender] = useState(true);
 
-  // Safely destructure to prevent errors
   const data = user?.data?.user;
   const chatID = user?.data?.chatID;
 
@@ -38,6 +50,8 @@ export default function ChatMessages({ user, setcontactCross, mainCross }) {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
+    clearTimeout(time);
+    setTyping(false);
     socket.on("render", (socket) => {
       if (socket.query.chatID == chatID) {
         clearTimeout(time);
@@ -52,22 +66,24 @@ export default function ChatMessages({ user, setcontactCross, mainCross }) {
 
   useEffect(() => {
     socket.on("typing", (socket) => {
-      console.log("typing");
-      clearTimeout(time);
-      setTyping(true);
-      time = setTimeout(() => {
-        setTyping(false);
-        console.log("not typing");
-      }, 2000);
+      if (socket.query.chatID == chatID) {
+        clearTimeout(time);
+        setTyping(true);
+        time = setTimeout(() => {
+          setTyping(false);
+          console.log("not typing");
+        }, 2000);
+      }
     });
     return () => {
       socket.off("typing");
     };
-  }, []);
+  }, [chatID]);
 
   // Rerender when you chage the user you talking to
   useEffect(() => {
     setMessages(user?.data?.messages || []);
+    setrender(false);
   }, [user?.data?.messages]);
 
   // Scroll to bottom whenever messages change will run every time messages change
@@ -75,7 +91,7 @@ export default function ChatMessages({ user, setcontactCross, mainCross }) {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "auto" });
     }
-  }, [messages, typing]);
+  }, [messages, typing, render]);
 
   const send = async () => {
     if (!inputValue) {
@@ -129,7 +145,12 @@ export default function ChatMessages({ user, setcontactCross, mainCross }) {
           </h1>
         </div>
         <div className="messagesending" style={{ pointerEvents: "none" }}>
-          <PaperClipIcon />
+          <PaperClipIcon
+            user={user}
+            setMessages={setMessages}
+            rerender={rerender}
+          />
+
           <input type="text" placeholder="Message" className="messageinput" />
           <SendIcon />
           <AttatchIcon />
@@ -149,6 +170,7 @@ export default function ChatMessages({ user, setcontactCross, mainCross }) {
         {messages.map((message) => {
           return (
             <MessageCard
+              setMessages={setMessages}
               key={message._id}
               direction={
                 message.senderId === user.data.userID ? "left" : "right"
@@ -159,8 +181,7 @@ export default function ChatMessages({ user, setcontactCross, mainCross }) {
                 hour12: true,
               })}
               content={message.content}
-              sent={message.sent}
-              seen={message.seen}
+              text={message.text}
             />
           );
         })}
@@ -169,7 +190,11 @@ export default function ChatMessages({ user, setcontactCross, mainCross }) {
       </div>
 
       <div className="messagesending">
-        <PaperClipIcon />
+        <PaperClipIcon
+          user={user}
+          setMessages={setMessages}
+          rerender={rerender}
+        />
         <input
           type="text"
           placeholder="Message"

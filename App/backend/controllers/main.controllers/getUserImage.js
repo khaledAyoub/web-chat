@@ -1,5 +1,6 @@
 import User from "../../models/user.model.js";
 import path from "path";
+import fs from "fs"; // For checking file existence
 
 export default async (req, res) => {
   const { userName } = req.body;
@@ -13,8 +14,15 @@ export default async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    user.image;
-    return res.sendFile(path.resolve(user.image));
+
+    const imagePath = path.resolve(user.image);
+
+    // Check if the file exists before sending it
+    if (fs.existsSync(imagePath)) {
+      return res.sendFile(imagePath);
+    } else {
+      return res.status(404).json({ message: "Image not found" });
+    }
   } catch (error) {
     console.error(error);
     return res

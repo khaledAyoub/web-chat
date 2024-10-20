@@ -813,6 +813,98 @@
  *         description: "Internal server error."
  */
 
+//-------------------------------- Upload File
+/**
+ * @swagger
+ * /api/main/fileUpload:
+ *   post:
+ *     summary: "Upload a file to the chat"
+ *     tags: [Main Chat]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - file
+ *               - chatID
+ *             properties:
+ *               file:
+ *                 type: string
+ *                 format: binary
+ *                 description: "The image file to upload. Only image files are allowed."
+ *               chatID:
+ *                 type: string
+ *                 format: objectId
+ *                 description: "The ID of the chat to which the message will be associated."
+ *     responses:
+ *       200:
+ *         description: "File uploaded successfully"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                   format: objectId
+ *                   description: "The ID of the newly created message."
+ *                 senderId:
+ *                   type: string
+ *                   format: objectId
+ *                   description: "The ID of the user who sent the message."
+ *                 content:
+ *                   type: string
+ *                   description: "The file path of the uploaded image."
+ *                 text:
+ *                   type: boolean
+ *                   description: "Indicates if the message is text or not."
+ *                 createdAt:
+ *                   type: string
+ *                   format: date-time
+ *                   description: "The timestamp when the message was created."
+ *                 updatedAt:
+ *                   type: string
+ *                   format: date-time
+ *                   description: "The timestamp when the message was last updated."
+ *       400:
+ *         description: "File is required or invalid file type."
+ *       404:
+ *         description: "Chat not found."
+ *       500:
+ *         description: "Internal server error."
+ */
+
+//-------------------------------- File Receive
+/**
+ * @swagger
+ * /api/main/fileDownload:
+ *   post:
+ *     summary: "Receive a file"
+ *     tags: [Main Chat]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - filepath
+ *             properties:
+ *               filepath:
+ *                 type: string
+ *                 description: "The path of the file to be received."
+ *     responses:
+ *       200:
+ *         description: "File downloaded successfully"
+ *       400:
+ *         description: "File path is required."
+ *       404:
+ *         description: "File not found."
+ *       500:
+ *         description: "An error occurred while sending the file."
+ */
 //----------------------------------------- Profile Api -----------------------------
 
 // ------------------------ Update Profile

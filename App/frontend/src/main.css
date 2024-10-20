@@ -35,6 +35,13 @@ main > div {
   border-radius: 10px;
   overflow: hidden;
 }
+svg {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+svg:hover {
+  transform: scale(1.1);
+}
 
 /* Media Queries */
 
