@@ -9,6 +9,7 @@ export default function SingleChatThum({
   about,
   missedMessages,
   changeUser,
+  setMainCross,
 }) {
   // Corrected classes assignment
   const classes = selected == "true" ? "singlechat selectedchat" : "singlechat";
@@ -17,6 +18,7 @@ export default function SingleChatThum({
     <div
       className={classes}
       onClick={() => {
+        setMainCross("show");
         changeUser(userName);
       }}
     >

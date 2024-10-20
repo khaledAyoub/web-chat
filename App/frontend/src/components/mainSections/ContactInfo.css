@@ -9,7 +9,7 @@
   overflow-y: scroll;
   z-index: 1;
 }
-.close {
+.contactinfo .close {
   width: 30px;
   position: absolute;
   top: 20px;

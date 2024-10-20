@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { apiClient } from "@/lib/api-client";
+import storeImages from "../auth/storeImages.js";
 import {
   ADD_PROFILE_IMAGE_ROUTE,
   HOST,
@@ -59,6 +60,7 @@ const Profile = () => {
         if (response.status === 200 && response.data) {
           setUserInfo({ ...response.data });
           toast.success("Profile Updated successfully");
+          storeImages(userName);
           navigate("/chat");
         }
       } catch (error) {

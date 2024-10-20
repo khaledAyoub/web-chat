@@ -8,9 +8,9 @@ import setUpProfile from "../controllers/auth.controllers/setUpProfile.js";
 import addProfileImage from "../controllers/auth.controllers/addProfileImage.js";
 import addBannerImage from "../controllers/auth.controllers/addBannerImage.js";
 import removeProfileImage from "../controllers/auth.controllers/removeProfileImage.js";
-import isProfileReady from "../controllers/auth.controllers/isProfileReady.js";
 import updateProfie from "../controllers/auth.controllers/updateProfie.js";
 import changePassword from "../controllers/auth.controllers/changePassword.js";
+import removeBannerImage from "../controllers/auth.controllers/removeBannerImage.js";
 
 const authRoutes = Router();
 const uploadpfp = multer({ dest: "uploads/profiles/" });
@@ -20,7 +20,6 @@ authRoutes.post("/login", login);
 authRoutes.post("/setup-profile", verifyToken, setUpProfile);
 authRoutes.get("/user-info", verifyToken, getUserInfo);
 
-/**/ authRoutes.get("/isProfileReady", verifyToken, isProfileReady);
 /**/ authRoutes.post("/update-profile", verifyToken, updateProfie);
 
 /**/ authRoutes.post("/change-password", verifyToken, changePassword);
@@ -38,5 +37,6 @@ authRoutes.post(
   addBannerImage
 );
 authRoutes.delete("/remove-profile-image", verifyToken, removeProfileImage);
+authRoutes.delete("/remove-banner-image", verifyToken, removeBannerImage);
 
 export default authRoutes;

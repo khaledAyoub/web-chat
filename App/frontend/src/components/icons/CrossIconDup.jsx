@@ -9,7 +9,11 @@ export default function CrossIcon({
   return (
     <svg
       onClick={() => {
-        setcontactCross("hide");
+        contactCross == "show" && window.innerWidth > 650
+          ? setcontactCross("hide")
+          : mainCross == "show" && window.innerWidth <= 650
+          ? setMainCross("hide")
+          : setMainCross("show");
       }}
       className="close"
       viewBox="0 0 30 30"

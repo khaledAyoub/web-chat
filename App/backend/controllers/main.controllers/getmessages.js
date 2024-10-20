@@ -1,9 +1,8 @@
 import SingleChat from "../../models/chat.model.js";
-import Message from "../../models/message.model.js";
 
 export default async (request, res) => {
   const { ID, userName } = request;
-  const otherUser = req.params.username;
+  const otherUser = request.params.username;
 
   try {
     // Check for the required parameter

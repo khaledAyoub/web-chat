@@ -23,8 +23,29 @@ io.on("connection", (socket) => {
 
   socket.on("sendMessage", (socket) => {
     io.to(userSocketMap[socket.query.userID]).emit("render", {
-      query: { chatID: socket.query.chatID, message: socket.query.message },
+      query: {
+        chatID: socket.query.chatID,
+        userID: socket.query.userID,
+        message: socket.query.message,
+      },
     });
+  });
+  socket.on("typing", (data) => {
+    const { chatID, userID } = data.query;
+
+    const userSocket = userSocketMap[userID];
+    if (userSocket) {
+      io.to(userSocket).emit("typing", {
+        query: { chatID, userID },
+      });
+    }
+  });
+
+  socket.on("disconnect", () => {
+    const userID = socket.handshake.query.myID;
+    if (userID) {
+      delete userSocketMap[userID];
+    }
   });
 });
 

@@ -1,16 +1,15 @@
 import React from "react";
 import "./ChatHeader.css";
+import CrossIconDup from "../icons/CrossIconDup.jsx";
 
 export default function ChatHeader(currentUser) {
+  console.log(currentUser.mainCross);
+
   if (currentUser.user.image) {
     return (
       <div
         className={`currentuserheader ${
-          currentUser.cross == "show"
-            ? window.width < 1250
-              ? "hide"
-              : "show"
-            : ""
+          currentUser.mainCross === "show" ? "show1" : "hide"
         }`}
       >
         <div className="headerleft">
@@ -18,18 +17,29 @@ export default function ChatHeader(currentUser) {
             src={currentUser.user.image}
             alt="PFP"
             className="currentuserimage"
-            onClick={() => currentUser.setCross("show")}
+            onClick={() => currentUser.setcontactCross("show3")}
           />
           <h2>{currentUser.user.userName}</h2>
         </div>
-        <div className="headerright"></div>
+        <div className="headerright">
+          <CrossIconDup
+            contactCross={currentUser.contactCross}
+            setcontactCross={currentUser.setcontactCross}
+            mainCross={currentUser.mainCross}
+            setMainCross={currentUser.setMainCross}
+          />
+        </div>
       </div>
     );
   } else {
     return (
       <div
         className="currentuserheader"
-        style={{ display: "flex", justifyContent: "center" }}
+        style={
+          window.innerWidth < 650
+            ? { display: "flex", justifyContent: "center", zIndex: "-1" }
+            : { display: "flex", justifyContent: "center", zIndex: "1" }
+        }
       >
         <h1>Choose user to show data</h1>
       </div>

@@ -3,12 +3,12 @@ import "./ContactInfo.css";
 
 import React from "react";
 
-export default function ContactInfo(currentUser, cross, setCross) {
+export default function ContactInfo(currentUser) {
   try {
     const data = currentUser.user.data.user;
 
     return (
-      <div className={`contactinfo ${currentUser.cross}`}>
+      <div className={`contactinfo ${currentUser.contactCross}`}>
         <img src={currentUser.user.banner} alt="Banner" className="banner" />
         <div className="pfpnameabout">
           <img
@@ -45,7 +45,10 @@ export default function ContactInfo(currentUser, cross, setCross) {
           </div>
         </div>
         <button className="blockbtn">Block</button>
-        <CrossIcon setCross={currentUser.setCross} cross={currentUser.cross} />
+        <CrossIcon
+          setcontactCross={currentUser.setcontactCross}
+          contactCross={currentUser.contactCross}
+        />
       </div>
     );
   } catch (err) {

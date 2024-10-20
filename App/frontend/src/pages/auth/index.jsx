@@ -11,6 +11,7 @@ import { LOGIN_ROUTE, SIGNUP_ROUTE } from "@/utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useAppStore } from "@/store";
 import axios from "axios";
+import storeImages from "./storeImages.js";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -46,42 +47,6 @@ const Auth = () => {
     }
 
     return true;
-  };
-
-  const storeImages = async (userName) => {
-    const imageResponse = await axios.post(
-      `http://localhost:8747/api/main/getUserImage`,
-      { userName: userName },
-      {
-        withCredentials: true,
-        responseType: "blob",
-      }
-    );
-    const imageBase64 = await new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        resolve(reader.result); // Base64 string
-      };
-      reader.readAsDataURL(imageResponse.data); // Convert to Base64
-    });
-    localStorage.setItem("image", imageBase64);
-
-    const bannerResponse = await axios.post(
-      `http://localhost:8747/api/main/getUserBanner`,
-      { userName: userName },
-      {
-        withCredentials: true,
-        responseType: "blob",
-      }
-    );
-    const bannerBase64 = await new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        resolve(reader.result); // Base64 string
-      };
-      reader.readAsDataURL(bannerResponse.data); // Convert to Base64
-    });
-    localStorage.setItem("banner", bannerBase64);
   };
 
   const handleLogin = async () => {
@@ -122,6 +87,7 @@ const Auth = () => {
 
         localStorage.setItem("userData", JSON.stringify(response.data.user));
         localStorage.setItem("myID", response.data.user.id);
+        console.log(response.data.user);
 
         navigate("/profile");
       }

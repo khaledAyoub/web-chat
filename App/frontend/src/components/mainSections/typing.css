@@ -1,0 +1,59 @@
+.bounce-text {
+  display: flex;
+  height: 30px;
+  align-items: flex-end;
+}
+
+.bounce-text span {
+  font-size: 0.7rem;
+  font-weight: bold;
+  display: inline-block;
+  animation: bounce 0.9s ease-in-out infinite;
+  animation-fill-mode: both;
+}
+
+.bounce-text span:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.bounce-text span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.bounce-text span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.bounce-text span:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.bounce-text span:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.bounce-text span:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+.bounce-text span:nth-child(7) {
+  animation-delay: 0.7s;
+}
+
+.bounce-text span:nth-child(8) {
+  animation-delay: 0.8s;
+}
+
+.bounce-text span:nth-child(9) {
+  animation-delay: 0.9s;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}

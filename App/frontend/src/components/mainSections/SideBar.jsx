@@ -5,7 +5,6 @@ import GroupsIcon from "../icons/GroupsIcon.jsx";
 import PhoneIcon from "../icons/PhoneIcon.jsx";
 
 import "./SideBar.css";
-import SaveIcon from "../icons/SaveIcon.jsx";
 import SettingIcon from "../icons/SettingIcon.jsx";
 import LogOutIcon from "../icons/LogOutIcon.jsx";
 
@@ -19,7 +18,6 @@ const Sidebar = () => (
         <PhoneIcon />
       </div>
       <div className="grouptwo">
-        <SaveIcon />
         <SettingIcon />
         <LogOutIcon />
       </div>

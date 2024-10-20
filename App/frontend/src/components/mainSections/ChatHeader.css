@@ -1,4 +1,9 @@
+.currentuserheader .close {
+  width: 23px;
+  display: none;
+}
 .currentuserheader {
+  position: relative;
   z-index: 2;
   grid-area: 1 / 3 / 2 / 5;
   background: #6e54b5;

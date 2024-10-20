@@ -7,6 +7,8 @@ const LogOutIcon = () => {
 
   const handleLogOutClick = async () => {
     Cookies.remove("jwt");
+    localStorage.clear();
+
     window.location.reload();
   };
 

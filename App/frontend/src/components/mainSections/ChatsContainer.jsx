@@ -17,13 +17,13 @@ const fetchUserImage = async (userName) => {
     { userName },
     {
       withCredentials: true,
-      responseType: "blob", // Important for receiving binary data
+      responseType: "blob",
     }
   );
   return URL.createObjectURL(imageResponse.data); // Convert blob to object URL
 };
 
-export default function ChatsContainer({ changeUser, user }) {
+export default function ChatsContainer({ changeUser, user, setMainCross }) {
   const [chats, setChats] = useState([]); // State to hold the chat data
   const [loading, setLoading] = useState(true); // State to handle loading status
   const [error, setError] = useState(null); // State to handle errors
@@ -70,6 +70,7 @@ export default function ChatsContainer({ changeUser, user }) {
             userName={chat.userName}
             about={chat.about}
             missedMessages={chat.missedMessages || 0} // Default to 0 if not available
+            setMainCross={setMainCross}
           />
         );
       })}

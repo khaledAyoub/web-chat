@@ -9,7 +9,8 @@ import ContactInfo from "./ContactInfo.jsx";
 
 export default function Main() {
   const [currentUser, setCurrentUser] = useState({});
-  const [cross, setCross] = useState("hide");
+  const [contactCross, setcontactCross] = useState("hide");
+  const [mainCross, setMainCross] = useState("hide");
 
   const handleOnClick = async (userName) => {
     if (currentUser !== userName) {
@@ -27,7 +28,7 @@ export default function Main() {
           { userName },
           {
             withCredentials: true,
-            responseType: "blob", // Important for receiving binary data
+            responseType: "blob",
           }
         );
         const image = URL.createObjectURL(imageResponse.data);
@@ -38,7 +39,7 @@ export default function Main() {
           { userName },
           {
             withCredentials: true,
-            responseType: "blob", // Important for receiving binary data
+            responseType: "blob",
           }
         );
         const banner = URL.createObjectURL(bannerResponse.data);
@@ -61,10 +62,29 @@ export default function Main() {
       <main>
         <SideBar />
         <SearchBar changeUser={handleOnClick} />
-        <ChatsContainer changeUser={handleOnClick} user={currentUser} />
-        <ChatHeader user={currentUser} cross={cross} setCross={setCross} />
-        <ChatMessages user={currentUser} cross={cross} setCross={setCross} />
-        <ContactInfo user={currentUser} cross={cross} setCross={setCross} />
+        <ChatsContainer
+          changeUser={handleOnClick}
+          user={currentUser}
+          setMainCross={setMainCross}
+        />
+        <ChatHeader
+          user={currentUser}
+          contactCross={contactCross}
+          setcontactCross={setcontactCross}
+          mainCross={mainCross}
+          setMainCross={setMainCross}
+        />
+        <ChatMessages
+          mainCross={mainCross}
+          user={currentUser}
+          contactCross={contactCross}
+          setcontactCross={setcontactCross}
+        />
+        <ContactInfo
+          user={currentUser}
+          contactCross={contactCross}
+          setcontactCross={setcontactCross}
+        />
       </main>
     </div>
   );

@@ -7,13 +7,15 @@ import AttatchIcon from "../icons/AttatchIcon.jsx";
 import axios from "axios";
 import io from "socket.io-client";
 
+var time;
+
 const socket = io.connect("http://localhost:8747", {
   query: {
     myID: localStorage.getItem("myID"),
   },
 });
 
-export default function ChatMessages({ user, setCross }) {
+export default function ChatMessages({ user, setcontactCross, mainCross }) {
   useEffect(() => {
     socket.emit("sendInfo", {
       query: {
@@ -26,6 +28,8 @@ export default function ChatMessages({ user, setCross }) {
   // for storing the messages and update them and initial them from user
   const [messages, setMessages] = useState(user?.data?.messages || []);
 
+  const [typing, setTyping] = useState(false);
+
   // Safely destructure to prevent errors
   const data = user?.data?.user;
   const chatID = user?.data?.chatID;
@@ -36,6 +40,8 @@ export default function ChatMessages({ user, setCross }) {
   useEffect(() => {
     socket.on("render", (socket) => {
       if (socket.query.chatID == chatID) {
+        clearTimeout(time);
+        setTyping(false);
         setMessages((prevMessages) => [...prevMessages, socket.query.message]);
       }
     });
@@ -43,6 +49,21 @@ export default function ChatMessages({ user, setCross }) {
       socket.off("render");
     };
   }, [chatID]);
+
+  useEffect(() => {
+    socket.on("typing", (socket) => {
+      console.log("typing");
+      clearTimeout(time);
+      setTyping(true);
+      time = setTimeout(() => {
+        setTyping(false);
+        console.log("not typing");
+      }, 2000);
+    });
+    return () => {
+      socket.off("typing");
+    };
+  }, []);
 
   // Rerender when you chage the user you talking to
   useEffect(() => {
@@ -54,7 +75,7 @@ export default function ChatMessages({ user, setCross }) {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "auto" });
     }
-  }, [messages]);
+  }, [messages, typing]);
 
   const send = async () => {
     if (!inputValue) {
@@ -90,7 +111,10 @@ export default function ChatMessages({ user, setCross }) {
   // If user data is not available, show the placeholder
   if (!data) {
     return (
-      <div className="currentusermain">
+      <div
+        className={`currentusermain ${mainCross === "show" ? "show1" : "hide"}`}
+        style={window.innerWidth < 650 ? { zIndex: "-1" } : { zIndex: "1" }}
+      >
         <div
           className="messagesPart"
           style={{
@@ -116,9 +140,9 @@ export default function ChatMessages({ user, setCross }) {
 
   return (
     <div
-      className="currentusermain"
+      className={`currentusermain ${mainCross === "show" ? "show1" : "hide"}`}
       onClick={() => {
-        setCross("hide");
+        setcontactCross("hide");
       }}
     >
       <div className="messagesPart">
@@ -140,6 +164,7 @@ export default function ChatMessages({ user, setCross }) {
             />
           );
         })}
+        {typing ? <MessageCard typeMessage={true} /> : ""}
         <div ref={messagesEndRef} /> {/* Empty div to act as scroll target */}
       </div>
 
@@ -155,8 +180,16 @@ export default function ChatMessages({ user, setCross }) {
             if (e.key == "Enter") {
               send();
             }
+
+            socket.emit("typing", {
+              query: {
+                chatID,
+                userID: user.data.userID,
+              },
+            });
           }}
         />
+
         <SendIcon clickHandler={send} />
         <AttatchIcon />
       </div>
